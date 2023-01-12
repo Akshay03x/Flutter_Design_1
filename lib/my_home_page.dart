@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'price': 10.44
       },
       {
-        'imagePath': 'cakephotos/cokkies3.jfiif',
+        'imagePath': 'cakephotos/cokkies2.jpg',
         'name': 'cokkies',
         'price': 233.45
       },
