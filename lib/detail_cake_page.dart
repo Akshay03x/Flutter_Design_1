@@ -22,41 +22,44 @@ class _DetailPageCakeState extends State<DetailPageCake> {
         resizeToAvoidBottomInset: false,
         body: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.arrow_back_ios_new,
-                        color: Colors.black, size: 40),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "${widget.name}",
-                      style: TextStyle(fontFamily: 'Pacifico', fontSize: 30),
-                      maxLines: 1,
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: EdgeInsets.only(top: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back_ios_new,
+                          color: Colors.black, size: 40),
                     ),
-                  ),
-                  Spacer(),
-                  TextButton(
-                    onPressed: () {},
-                    child: Icon(Icons.favorite,
-                        color: Colors.pinkAccent, size: 40),
-                  ),
-                ],
+                    Expanded(
+                      child: Text(
+                        "${widget.name}",
+                        style: TextStyle(fontFamily: 'Pacifico', fontSize: 30),
+                        maxLines: 1,
+                      ),
+                    ),
+                    Spacer(),
+                    TextButton(
+                      onPressed: () {},
+                      child: Icon(Icons.favorite,
+                          color: Colors.pinkAccent, size: 30),
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: 7,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
                   Container(
-                    margin: EdgeInsets.all(20),
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.asset(
@@ -79,9 +82,9 @@ class _DetailPageCakeState extends State<DetailPageCake> {
                           ),
                         ),
                         alignment: Alignment.center,
-                        margin: EdgeInsets.fromLTRB(10, 0, 5, 30),
+                        margin: EdgeInsets.fromLTRB(10, 0, 3, 10),
                         height: 70,
-                        width: 150,
+                        width: 130,
                         // color: Colors.amber,
                         child: RichText(
                           text: TextSpan(
@@ -107,30 +110,36 @@ class _DetailPageCakeState extends State<DetailPageCake> {
               ),
             ),
             Expanded(
-              flex: 3,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CustomForColumn(
-                            name: "Serving Weight", detail: "320 g"),
-                        CustomForColumn(name: "Shelf Life ", detail: "1 Month"),
-                      ],
-                    ),
+              flex: 2,
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            CustomForColumn(
+                                name: "Serving Weight", detail: "320 g"),
+                            CustomForColumn(
+                                name: "Shelf Life ", detail: "1 Month"),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            CustomForColumn(
+                                name: "Calories(100g)", detail: "510 Kcal"),
+                            CustomForColumn(name: "Sweetener", detail: "Sugar"),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CustomForColumn(
-                            name: "Calories(100g)", detail: "510 Kcal"),
-                        CustomForColumn(name: "Sweetener", detail: "Sugar"),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             Expanded(
@@ -141,6 +150,7 @@ class _DetailPageCakeState extends State<DetailPageCake> {
                       MaterialPageRoute(builder: ((context) => LoginPage())))
                 },
                 child: Container(
+                  // padding: EdgeInsets.all(50),
                   alignment: Alignment.center,
                   height: double.infinity,
                   width: double.infinity,
@@ -155,11 +165,12 @@ class _DetailPageCakeState extends State<DetailPageCake> {
                     TextSpan(
                       children: [
                         WidgetSpan(
-                            child: Icon(
-                          Icons.shopping_cart,
-                          color: Colors.white,
-                          size: 25,
-                        )),
+                          child: Icon(
+                            Icons.shopping_cart,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                        ),
                         TextSpan(
                             text: " Add To Cart",
                             style:
@@ -177,46 +188,44 @@ class _DetailPageCakeState extends State<DetailPageCake> {
   }
 
   Widget CustomForColumn({required name, required detail}) {
-    return Expanded(
-      child: Container(
-        padding: EdgeInsets.all(8),
-        margin: EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
+    return Container(
+      padding: EdgeInsets.all(8),
+      margin: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
         ),
-        child: Expanded(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: Text(
-                    textAlign: TextAlign.right,
-                    "$name",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    textAlign: TextAlign.right,
-                    "$detail",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        // color: Colors.yellow,
       ),
+      child: Expanded(
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                child: Text(
+                  textAlign: TextAlign.right,
+                  "$name",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  textAlign: TextAlign.right,
+                  "$detail",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      // color: Colors.yellow,
     );
   }
 }

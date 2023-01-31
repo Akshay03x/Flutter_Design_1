@@ -1,5 +1,7 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project2/my_home_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   // var emailController=TextEditingController();
@@ -22,9 +24,12 @@ class _LoginPageState extends State<LoginPage> {
         body: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset("assets/cakephotos/cokkies.webp",fit: BoxFit.cover,),
+            Image.asset(
+              "assets/cakephotos/menduvada.jpeg",
+              fit: BoxFit.cover,
+            ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SingleChildScrollView(
                   child: Card(
@@ -34,13 +39,32 @@ class _LoginPageState extends State<LoginPage> {
                       child: SizedBox(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              child: Image.asset(
-                                "assets/cakephotos/cokkies.webp",
-                                height: 70,
-                                width: 70,
-                              ),
+                            // Container(
+                            //   child: Image.asset(
+                            //     "assets/cakephotos/cokkies.webp",
+                            //     height: 70,
+                            //     width: 70,
+                            //     alignment: Alignment.center,
+                            //   ),
+                            // ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    "Sign In",
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.getFont(
+                                      'Signika Negative',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30
+                                    ),
+                                  ),
+                                  margin: EdgeInsets.fromLTRB(10, 30, 0, 10),
+                                ),
+                              ],
                             ),
                             CustomForField(
                                 hintText: "Enter Email ",
@@ -51,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                                 hintText: "Enter PassWord",
                                 controller: passwordController,
                                 obscureText: true,
-                                name: null),
+                                name: 'password'),
                             Container(
                               margin: EdgeInsets.only(top: 5),
                               child: InkWell(
@@ -59,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: Text(
                                   'Forgot PassWord?',
                                   style: TextStyle(
-                                      color: Colors.blue, fontSize: 15),
+                                      color: Colors.brown[900], fontSize: 15,fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
@@ -68,9 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                               margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                               child: TextButton(
                                 style: TextButton.styleFrom(
-                                  backgroundColor: Colors.black,
+                                  backgroundColor: Colors.brown[900],
                                   padding: EdgeInsets.fromLTRB(
-                                      40, 0, 40, 0), // Background Color
+                                      40, 20, 40, 20), // Background Color
                                 ),
                                 onPressed: () {
                                   if (formkey.currentState!.validate()) {
@@ -79,13 +103,26 @@ class _LoginPageState extends State<LoginPage> {
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 MyHomePage()));
+                                    final snackBar = SnackBar(
+                                      elevation: 0,
+                                      behavior: SnackBarBehavior.floating,
+                                      backgroundColor: Colors.transparent,
+                                      content: AwesomeSnackbarContent(
+                                        title: 'Welcome !!!',
+                                        message: '',
+                                        contentType: ContentType.success,
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                      ..hideCurrentSnackBar()
+                                      ..showSnackBar(snackBar);
                                   }
                                 },
                                 child: Text(
                                   "Sign In",
                                   style: TextStyle(
-                                    color: Colors.yellowAccent,
-                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontSize: 20,
                                   ),
                                 ),
                               ),
@@ -101,7 +138,8 @@ class _LoginPageState extends State<LoginPage> {
                                     child: Text(
                                       "Sign Up",
                                       style: TextStyle(
-                                        color: Colors.blue,
+                                        color: Colors.brown[900],
+                                        fontWeight: FontWeight.bold
                                       ),
                                     ),
                                   ),
@@ -152,6 +190,12 @@ class _LoginPageState extends State<LoginPage> {
           if (name == 'email') {
             if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value!)) {
               return "Please enter a valid email address";
+            }
+          }
+          if (name == 'password') {
+            if (!RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)")
+                .hasMatch(value!)) {
+              return "Password should contain Capital, small letter & Number & Special";
             }
           }
         },

@@ -244,7 +244,7 @@ Widget build(BuildContext context) {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            ClipRRect(
+            ClipRRect(    
               borderRadius: BorderRadius.circular(50),
               child: Image.asset(
                 path,

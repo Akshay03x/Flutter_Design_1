@@ -40,6 +40,7 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   blurrycontainer: ^1.0.2
   cool_dropdown: ^1.4.2
+  awesome_snackbar_content: ^0.1.0
 
 dev_dependencies:
   flutter_test:
