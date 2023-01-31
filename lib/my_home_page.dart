@@ -19,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
 
     List l1 = [
       Icons.home_filled,
@@ -62,9 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'price': 233.45
       },
     ];
-    List<Widget> widgetList=[Column(
-      // mainAxisSize: MainAxisSize.min,
-      children: [
+    List<Widget> widgetList=[Column(children: [
         Expanded(
           flex: 2,
           child: Row(

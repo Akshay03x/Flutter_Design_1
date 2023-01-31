@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project2/login_page/login_page.dart';
 
 class DetailPageCake extends StatefulWidget {
   final String? name;
@@ -50,7 +51,7 @@ class _DetailPageCakeState extends State<DetailPageCake> {
               ),
             ),
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
@@ -71,34 +72,35 @@ class _DetailPageCakeState extends State<DetailPageCake> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                          decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50),
-                            ),
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(50),
                           ),
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.fromLTRB(10, 0, 5, 30),
-                          height: 70,
-                          width: 150,
-                          // color: Colors.amber,
-                          child: RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: "\u{20B9} ${widget.price} ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20)),
-                                TextSpan(
-                                    text: '/kg',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 15,
-                                        color: Colors.black54)),
-                              ],
-                            ),
-                          )),
+                        ),
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.fromLTRB(10, 0, 5, 30),
+                        height: 70,
+                        width: 150,
+                        // color: Colors.amber,
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: "\u{20B9} ${widget.price} ",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20)),
+                              TextSpan(
+                                  text: '/kg',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15,
+                                      color: Colors.black54)),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -110,21 +112,62 @@ class _DetailPageCakeState extends State<DetailPageCake> {
                 children: [
                   Expanded(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        CustomForColumn(name: "Serving Wight", detail: "320 g"),
-                        CustomForColumn(name: "Serving Wight", detail: "320 g"),
+                        CustomForColumn(
+                            name: "Serving Weight", detail: "320 g"),
+                        CustomForColumn(name: "Shelf Life ", detail: "1 Month"),
                       ],
                     ),
                   ),
                   Expanded(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        CustomForColumn(name: "Serving Wight", detail: "320 g"),
-                        CustomForColumn(name: "Serving Wight", detail: "320 g"),
+                        CustomForColumn(
+                            name: "Calories(100g)", detail: "510 Kcal"),
+                        CustomForColumn(name: "Sweetener", detail: "Sugar"),
                       ],
                     ),
                   ),
                 ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: InkWell(
+                onTap: () => {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => LoginPage())))
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: double.infinity,
+                  width: double.infinity,
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(40),
+                    ),
+                  ),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        WidgetSpan(
+                            child: Icon(
+                          Icons.shopping_cart,
+                          color: Colors.white,
+                          size: 25,
+                        )),
+                        TextSpan(
+                            text: " Add To Cart",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 25)),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
@@ -136,29 +179,38 @@ class _DetailPageCakeState extends State<DetailPageCake> {
   Widget CustomForColumn({required name, required detail}) {
     return Expanded(
       child: Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(2),
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.all(
-            Radius.circular(50),
+            Radius.circular(20),
           ),
         ),
         child: Expanded(
           child: Container(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(20, 10, 0, 10),
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Text(
+                    textAlign: TextAlign.right,
                     "$name",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, color: Colors.grey,),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-                Text("$detail"),
+                Container(
+                  child: Text(
+                    textAlign: TextAlign.right,
+                    "$detail",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
             ),
           ),
