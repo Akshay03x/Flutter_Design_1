@@ -150,7 +150,6 @@ class _DetailPageCakeState extends State<DetailPageCake> {
                       MaterialPageRoute(builder: ((context) => LoginPage())))
                 },
                 child: Container(
-                  // padding: EdgeInsets.all(50),
                   alignment: Alignment.center,
                   height: double.infinity,
                   width: double.infinity,

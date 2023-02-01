@@ -57,6 +57,21 @@ Widget build(BuildContext context) {
         'price': 233.45
       },
       {
+        'imagePath': 'cakephotos/elevated-view.jpg',
+        'name': 'cokkies',
+        'price': 233.45
+      },
+      {
+        'imagePath': 'cakephotos/cokkies.webp',
+        'name': 'cokkies',
+        'price': 233.45
+      },
+      {
+        'imagePath': 'cakephotos/elevated-view.jpg',
+        'name': 'cokkies',
+        'price': 233.45
+      },
+      {
         'imagePath': 'cakephotos/cokkies.webp',
         'name': 'cokkies',
         'price': 233.45

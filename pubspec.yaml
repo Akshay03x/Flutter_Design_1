@@ -41,6 +41,7 @@ dependencies:
   blurrycontainer: ^1.0.2
   cool_dropdown: ^1.4.2
   awesome_snackbar_content: ^0.1.0
+  blur: ^3.1.0
 
 dev_dependencies:
   flutter_test:

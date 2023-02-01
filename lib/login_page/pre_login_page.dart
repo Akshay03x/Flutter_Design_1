@@ -24,7 +24,7 @@ class _PreLoginPageState extends State<PreLoginPage> {
                     "assets/cakephotos/delicious-desserts.jpg",
                     fit: BoxFit.cover,
                   ),
-                    // borderRadius: BorderRadiusGeometry.lerp(BorderRadius.circular(10), BorderRadius.circular(10), 1),
+                  // borderRadius: BorderRadiusGeometry.lerp(BorderRadius.circular(10), BorderRadius.circular(10), 1),
                 ),
               ],
             ),
@@ -35,34 +35,32 @@ class _PreLoginPageState extends State<PreLoginPage> {
               children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
-                  child:  RichText(
+                  child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
                             text: "Delivering the best ",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25)),
+                                fontWeight: FontWeight.bold, fontSize: 25,color: Colors.black)),
                         TextSpan(
                             text: 'Bakery',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: Colors.amber,
-
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.amber,
                             )),
                         TextSpan(
                             text: "\nFood At Your doorstep ",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25)),
+                                fontWeight: FontWeight.bold, fontSize: 25,color: Colors.black)),
                       ],
                     ),
                   ),
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -81,7 +79,7 @@ class _PreLoginPageState extends State<PreLoginPage> {
                           TextSpan(
                               text: "Get Started!! ",
                               style:
-                              TextStyle(color: Colors.white, fontSize: 20)),
+                                  TextStyle(color: Colors.white, fontSize: 20)),
                         ],
                       ),
                     ),
