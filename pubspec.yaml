@@ -42,6 +42,10 @@ dependencies:
   cool_dropdown: ^1.4.2
   awesome_snackbar_content: ^0.1.0
   blur: ^3.1.0
+  google_sign_in: ^5.4.4
+  http: ^0.13.5
+  loading_animation_widget: ^1.2.0+4
+  firebase_core: ^2.4.1
 
 dev_dependencies:
   flutter_test:

@@ -1,26 +1,35 @@
+import 'dart:convert';
+
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project2/detail_cake_page.dart';
 import 'package:flutter_project2/login_page/login_page.dart';
+import 'package:flutter_project2/logout_page/log_out_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class MyHomePage extends StatefulWidget {
+  final name;
+  const  MyHomePage({required this.name});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int SelectedIndex=0;
+   // var name=this.name;
+  int SelectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
   }
 
   @override
-Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) {
     List l1 = [
       Icons.home_filled,
       Icons.icecream_outlined,
@@ -44,160 +53,192 @@ Widget build(BuildContext context) {
       {
         'imagePath': 'cakephotos/cokkies.webp',
         'name': 'cokkies',
-        'price': 233.45
+        'price': 233.45,
+        'description':
+            'Establishments producing and selling flour-based food like cakes, cookies, and pastries are what bakeries are all about. Several bakeries offer services for festivities and occasions like birthdays, weddings, and other events.'
       },
       {
         'imagePath': 'cakephotos/cokkies2.jpg',
         'name': 'cokkies For Deep',
-        'price': 10.44
+        'price': 10.44,
+        'description':
+            'Establishments producing and selling flour-based food like cakes, cookies, and pastries are what bakeries are all about. Several bakeries offer services for festivities and occasions like birthdays, weddings, and other events.'
       },
       {
         'imagePath': 'cakephotos/cokkies2.jpg',
         'name': 'cokkies',
-        'price': 233.45
+        'price': 233.45,
+        'description':
+            'Establishments producing and selling flour-based food like cakes, cookies, and pastries are what bakeries are all about. Several bakeries offer services for festivities and occasions like birthdays, weddings, and other events.'
       },
       {
         'imagePath': 'cakephotos/elevated-view.jpg',
         'name': 'cokkies',
-        'price': 233.45
+        'price': 233.45,
+        'description':
+            'Establishments producing and selling flour-based food like cakes, cookies, and pastries are what bakeries are all about. Several bakeries offer services for festivities and occasions like birthdays, weddings, and other events.'
       },
       {
         'imagePath': 'cakephotos/cokkies.webp',
         'name': 'cokkies',
-        'price': 233.45
+        'price': 233.45,
+        'description':
+            'Establishments producing and selling flour-based food like cakes, cookies, and pastries are what bakeries are all about. Several bakeries offer services for festivities and occasions like birthdays, weddings, and other events.'
       },
       {
         'imagePath': 'cakephotos/elevated-view.jpg',
         'name': 'cokkies',
-        'price': 233.45
+        'price': 233.45,
+        'description':
+            'Establishments producing and selling flour-based food like cakes, cookies, and pastries are what bakeries are all about. Several bakeries offer services for festivities and occasions like birthdays, weddings, and other events.'
       },
       {
         'imagePath': 'cakephotos/cokkies.webp',
         'name': 'cokkies',
-        'price': 233.45
+        'price': 233.45,
+        'description':
+            'Establishments producing and selling flour-based food like cakes, cookies, and pastries are what bakeries are all about. Several bakeries offer services for festivities and occasions like birthdays, weddings, and other events.'
       },
     ];
-    List<Widget> widgetList=[Column(children: [
-        Expanded(
-          flex: 2,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                flex: 4,
-                child: Container(
-                  alignment: Alignment.center,
-                  // color: Colors.yellow,
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    "Choose Cokkies\nFor Your Tea Party",
-                    style: GoogleFonts.getFont(
-                      'Nunito',
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(left: 10),
-                  // color: Colors.pink,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                            MaterialStatePropertyAll(Colors.amber),
-                            padding: MaterialStatePropertyAll(
-                                EdgeInsets.all(30)),
-                            shadowColor:
-                            MaterialStatePropertyAll(Colors.black),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.horizontal(
-                                    left: Radius.circular(15),
-                                  ),
-                                ))),
-                        child: Icon(
-                          Icons.shopping_cart,
-                          color: Colors.white,
-                        ),
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()))),
-                  ),
-                  // color: Colors.pink,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            children: [
-              for (var i in l1) Center(child: CustomForExpand2(icon: i)),
-            ],
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Container(
-            margin: EdgeInsets.fromLTRB(5, 10, 5, 10),
+    List<Widget> widgetList = [
+      Column(
+        children: [
+          Expanded(
+            flex: 2,
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
-                  child: CustomForExpand3(
-                      icon: Icons.monitor_outlined,
-                      alignment: Alignment.centerLeft),
-                  flex: 2,
+                  flex: 4,
+                  child: Container(
+                    alignment: Alignment.center,
+                    // color: Colors.yellow,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "Choose Cokkies\nFor Your Tea Party",
+                      style: GoogleFonts.getFont(
+                        'Nunito',
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: Container(
-                    child: CoolDropdown(
-                      dropdownList: dropdownItemList,
-                      onChange: (v) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()));
-                      },
-                      defaultValue: dropdownItemList[3],
+                    margin: EdgeInsets.only(left: 10),
+                    // color: Colors.pink,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.amber),
+                              padding:
+                                  MaterialStatePropertyAll(EdgeInsets.all(30)),
+                              shadowColor:
+                                  MaterialStatePropertyAll(Colors.black),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.horizontal(
+                                  left: Radius.circular(15),
+                                ),
+                              ))),
+                          child: Icon(
+                            Icons.shopping_cart,
+                            color: Colors.white,
+                          ),
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()))),
                     ),
+                    // color: Colors.pink,
                   ),
-                  flex: 3,
-                ),
-                Expanded(
-                  child: CustomForExpand3(
-                      icon: Icons.segment,
-                      alignment: Alignment.centerRight),
-                  flex: 2,
                 ),
               ],
             ),
           ),
-        ),
-        Expanded(
-          flex: 6,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            children: [
-              for (var i in forlistview)
-                CustomForExpand4(
-                    path: i['imagePath'],
-                    name: i['name'],
-                    price: i['price']),
-            ],
+          Expanded(
+            flex: 1,
+            child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              children: [
+                for (var i in l1) Center(child: CustomForExpand2(icon: i)),
+              ],
+            ),
           ),
-        ),
-      ],
-    ),LoginPage(),LoginPage(),LoginPage()];
+          Expanded(
+            flex: 1,
+            child: Container(
+              margin: EdgeInsets.fromLTRB(5, 10, 5, 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CustomForExpand3(
+                        icon: Icons.monitor_outlined,
+                        alignment: Alignment.centerLeft),
+                    flex: 2,
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: CoolDropdown(
+                        dropdownList: dropdownItemList,
+                        onChange: (v) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        },
+                        defaultValue: dropdownItemList[3],
+                      ),
+                    ),
+                    flex: 3,
+                  ),
+                  Expanded(
+                    child: CustomForExpand3(
+                        icon: Icons.segment, alignment: Alignment.centerRight),
+                    flex: 2,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 6,
+            child: FutureBuilder<List<dynamic>>(
+              future: getData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      for (var i in snapshot.data!)
+                        CustomForExpand4(
+                          path: i['imagePath'],
+                          name: i['name'],
+                          price: i['price'],
+                        ),
+                    ],
+                  );
+                }
+                return Center(
+                  child: LoadingAnimationWidget.staggeredDotsWave(
+                    color: Colors.black,
+                    size: 100 ,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+      LoginPage(),
+      LoginPage(),
+      LogOut(name: widget.name,),
+    ];
 
     return SafeArea(
       child: Scaffold(
@@ -212,11 +253,11 @@ Widget build(BuildContext context) {
           ],
           onTap: (index) {
             setState(() {
-              SelectedIndex=index;
+              SelectedIndex = index;
             });
           },
         ),
-        body:widgetList [SelectedIndex],
+        body: widgetList[SelectedIndex],
       ),
     );
   }
@@ -259,22 +300,14 @@ Widget build(BuildContext context) {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            ClipRRect(    
+            ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image.asset(
                 path,
                 fit: BoxFit.cover,
               ),
             ),
-            // Container(
-            //   alignment: Alignment.topLeft,
-            //   margin: EdgeInsets.fromLTRB(25, 20, 0, 0),
-            //   child: Text(
-            //     name,
-            //     style: TextStyle(fontSize: 50),
-            //   ),
-            // ),
-            Row (
+            Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
@@ -311,7 +344,16 @@ Widget build(BuildContext context) {
                             child: Icon(
                               Icons.add_shopping_cart,
                             ),
-                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPageCake(name: name,image: path,price:price.toString()),));},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPageCake(
+                                        name: name,
+                                        image: path,
+                                        price: price.toString()),
+                                  ));
+                            },
                           )
                         ],
                       ),
@@ -325,5 +367,16 @@ Widget build(BuildContext context) {
         ),
       ),
     );
+  }
+}
+
+Future<List<dynamic>> getData() async {
+  final url = 'http://localhost:3333/cake';
+  final res = await http.get(Uri.parse(url));
+  if (res.statusCode == 200) {
+    List l = await jsonDecode(res.body);
+    return l;
+  } else {
+    throw Exception("Not FAtch");
   }
 }
