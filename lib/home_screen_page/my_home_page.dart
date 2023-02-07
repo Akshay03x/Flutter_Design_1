@@ -4,7 +4,9 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project2/detail_cake_page.dart';
+import 'package:flutter_project2/detail_pages/detail_cake_page.dart';
+import 'package:flutter_project2/home_screen_page/custom_for_dropdown_row.dart';
+import 'package:flutter_project2/home_screen_page/custom_for_icon_list.dart';
 import 'package:flutter_project2/login_page/login_page.dart';
 import 'package:flutter_project2/logout_page/log_out_page.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -262,30 +264,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget CustomForExpand2({required icon}) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-      child: FloatingActionButton(
-        backgroundColor: Colors.white70,
-        onPressed: () {},
-        child: Icon(
-          icon,
-          size: 35,
-          color: Colors.black,
-        ),
-      ),
-    );
-  }
 
-  Widget CustomForExpand3({required icon, required alignment}) {
-    return Container(
-      alignment: alignment,
-      child: TextButton(
-        child: Icon(icon, color: Colors.black),
-        onPressed: () {},
-      ),
-    );
-  }
 
   Widget CustomForExpand4(
       {required path, required String name, required double price}) {
@@ -330,17 +309,17 @@ class _MyHomePageState extends State<MyHomePage> {
                           ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStatePropertyAll(Colors.black),
+                                MaterialStatePropertyAll(Colors.black),
                                 padding: MaterialStatePropertyAll(
                                     EdgeInsets.fromLTRB(35, 20, 35, 20)),
                                 shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.horizontal(
-                                    left: Radius.circular(40),
-                                    right: Radius.circular(40),
-                                  ),
-                                ))),
+                                      borderRadius: BorderRadius.horizontal(
+                                        left: Radius.circular(40),
+                                        right: Radius.circular(40),
+                                      ),
+                                    ))),
                             child: Icon(
                               Icons.add_shopping_cart,
                             ),

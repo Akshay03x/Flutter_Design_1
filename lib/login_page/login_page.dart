@@ -1,18 +1,10 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-
-// import 'package:blur/blur.dart';
-// import 'package:blurrycontainer/blurrycontainer.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project2/my_home_page.dart';
+import 'package:flutter_project2/home_screen_page/my_home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
-  // var emailController=TextEditingController();
-  // var passwordController=TextEditingController();
-  // const LoginPage({Key? key}) : super(key: key);
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
