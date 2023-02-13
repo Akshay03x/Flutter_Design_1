@@ -15,14 +15,13 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   final name;
-  const  MyHomePage({required this.name});
+  const MyHomePage({required this.name});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-   // var name=this.name;
   int SelectedIndex = 0;
 
   @override
@@ -210,36 +209,38 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Expanded(
             flex: 6,
-            child: FutureBuilder<List<dynamic>>(
-              future: getData(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      for (var i in snapshot.data!)
-                        CustomForExpand4(
-                          path: i['imagePath'],
-                          name: i['name'],
-                          price: i['price'],
-                        ),
-                    ],
-                  );
-                }
-                return Center(
-                  child: LoadingAnimationWidget.staggeredDotsWave(
-                    color: Colors.black,
-                    size: 100 ,
+            // child: FutureBuilder<List<dynamic>>(
+            //   future: null, //getData()
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                for (var i in forlistview)
+                  CustomForExpand4(
+                    path: i['imagePath'],
+                    name: i['name'],
+                    price: i['price'],
                   ),
-                );
-              },
+              ],
             ),
+            // }
+            // return Center(
+            //   child: LoadingAnimationWidget.staggeredDotsWave(
+            //     color: Colors.black,
+            //     size: 100,
+            //   ),
+            // );
+            // },
+            // ),
           ),
         ],
       ),
       LoginPage(),
       LoginPage(),
-      LogOut(name: widget.name,),
+      LogOut(
+        name: widget.name,
+      ),
     ];
 
     return SafeArea(
@@ -263,8 +264,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
-
 
   Widget CustomForExpand4(
       {required path, required String name, required double price}) {
@@ -309,17 +308,17 @@ class _MyHomePageState extends State<MyHomePage> {
                           ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor:
-                                MaterialStatePropertyAll(Colors.black),
+                                    MaterialStatePropertyAll(Colors.black),
                                 padding: MaterialStatePropertyAll(
                                     EdgeInsets.fromLTRB(35, 20, 35, 20)),
                                 shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
+                                        RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.horizontal(
-                                        left: Radius.circular(40),
-                                        right: Radius.circular(40),
-                                      ),
-                                    ))),
+                                  borderRadius: BorderRadius.horizontal(
+                                    left: Radius.circular(40),
+                                    right: Radius.circular(40),
+                                  ),
+                                ))),
                             child: Icon(
                               Icons.add_shopping_cart,
                             ),
