@@ -78,7 +78,7 @@ class _DetailPageCakeState extends State<DetailPageCake> {
                         decoration: BoxDecoration(
                           color: Colors.amber,
                           borderRadius: BorderRadius.all(
-                            Radius.circular(50),
+                            Radius.circular(45),
                           ),
                         ),
                         alignment: Alignment.center,
